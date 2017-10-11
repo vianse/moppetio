@@ -1,0 +1,2 @@
+class Compartir < ApplicationRecord
+end

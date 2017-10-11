@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @compartir.name %>
+</p>
+
+<p>
+  <strong>Rfc:</strong>
+  <%= @compartir.rfc %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @compartir.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @compartir.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @compartir.email %>
+</p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @compartir.token %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @compartir.uid %>
+</p>
+
+<%= link_to 'Edit', edit_compartir_path(@compartir) %> |
+<%= link_to 'Back', compartirs_path %>

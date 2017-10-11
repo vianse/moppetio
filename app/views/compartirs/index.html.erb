@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Compartirs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rfc</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Token</th>
+      <th>Uid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compartirs.each do |compartir| %>
+      <tr>
+        <td><%= compartir.name %></td>
+        <td><%= compartir.rfc %></td>
+        <td><%= compartir.address %></td>
+        <td><%= compartir.phone %></td>
+        <td><%= compartir.email %></td>
+        <td><%= compartir.token %></td>
+        <td><%= compartir.uid %></td>
+        <td><%= link_to 'Show', compartir %></td>
+        <td><%= link_to 'Edit', edit_compartir_path(compartir) %></td>
+        <td><%= link_to 'Destroy', compartir, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compartir', new_compartir_path %>

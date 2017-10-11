@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rfcs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rfc</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Userid</th>
+      <th>Count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rfcs.each do |rfc| %>
+      <tr>
+        <td><%= rfc.name %></td>
+        <td><%= rfc.rfc %></td>
+        <td><%= rfc.address %></td>
+        <td><%= rfc.phone %></td>
+        <td><%= rfc.email %></td>
+        <td><%= rfc.userId %></td>
+        <td><%= rfc.count %></td>
+        <td><%= link_to 'Show', rfc %></td>
+        <td><%= link_to 'Edit', edit_rfc_path(rfc) %></td>
+        <td><%= link_to 'Destroy', rfc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rfc', new_rfc_path %>

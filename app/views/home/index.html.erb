@@ -1,0 +1,171 @@
+<style>
+  body{
+    background: hsl(200, 9%, 94%)
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  .title{
+    display: flex;
+    justify-content: center;
+    color:white;
+  }
+  .ctitle{
+    background: #DB5461!important;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  .subtitle{
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+  .contenido{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .label{
+    font-weight: bold;
+  }
+  .nombre{
+    display: flex;
+    flex-direction: 'row';
+    padding: 10px;
+  }
+  .rfc{
+    display: flex;
+    flex-direction: 'row';
+    padding: 10px;
+  }
+  .address{
+    display: flex;
+    flex-direction: 'row';
+    padding: 10px;
+  }
+  .phone{
+    display: flex;
+    flex-direction: 'row';
+    padding: 10px;
+  }
+  .email{
+    display: flex;
+    flex-direction: 'row';
+    padding: 10px;
+  }
+</style>
+<div class="container">
+  <div class="ctitle">
+    <h1 class="title">moppet.io</h1>
+    <p class="subtitle">Comparte tu información con limite de tiempo.</p>
+  </div><br><br>
+
+  <div id="data" class="contenido"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+<script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
+<script src="//cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="//cdn.rawgit.com/hilios/jQuery.countdown/2.2.0/dist/jquery.countdown.min.js"></script>
+<script type="text/jsx">
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var query = getUrlParameter('token');
+    var url = "api/v1/get_share?token=" + query
+
+    var Datos = React.createClass({
+        getInitialState: function() {
+          return {
+                data: [],
+                value: '',
+          }
+         },
+        componentDidMount: function() {
+           $.ajax({
+                 url: url,
+                 dataType: 'json',
+                 success: function(data) {
+                   this.setState({data: data});
+                 }.bind(this)
+           });
+        },
+        render: function() {
+
+          if (this.state.data == null){
+            return <div>
+                      Los datos no existen o ya no se encuentran disponibles.
+                   </div>
+          }else {
+            return <div>
+                      <div className="nombre">
+                        Nombre o Razón Social:
+                      <div className="label" id='name'>{this.state.data.name}</div>
+                      </div>
+                      <div className="rfc">
+                      RFC:
+                      <div className="label" id='rfc'>{this.state.data.rfc}</div>
+
+                      </div>
+                      <div className="address">
+                      Dirección:
+                       <div className="label" id='address'>{this.state.data.address}</div>
+
+                      </div>
+                      <div className="phone">
+                      Teléfono:
+                      <div className="label" id='phone'>{this.state.data.phone}</div>
+
+                      </div>
+                      <div className="email">
+                      Correo Electrónico:
+                      <div className="label" id='email'>{this.state.data.email}</div>
+
+                      </div>
+
+                   </div>
+          }
+
+        }
+
+
+        });
+
+         React.render(
+              <Datos />,
+         document.getElementById('data')
+         );
+</script>
+
+<script>
+  function copyToClipboard(element) {
+    var $temp = $("<div>");
+   $("body").append($temp);
+   $temp.attr("contenteditable", true)
+        .html($(selector).html()).select()
+        .on("focus", function() { document.execCommand('selectAll',false,null) })
+        .focus();
+   document.execCommand("copy");
+   $temp.remove();
+  }
+
+
+</script>
