@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: CloudRFC_production
-  username: CloudRFC
-  password: <%= ENV['CLOUDRFC_DATABASE_PASSWORD'] %>
+  database: df7s2tjcckl7i8
+  username: cfdtzjaiunbhbh
+  password: b2c8fe8573fee95e43650febe6cc83ba78ddd408cae2399491c5b18b348f552b
+  port: 5432
+  host: ec2-50-16-228-232.compute-1.amazonaws.com
